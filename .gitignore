@@ -9,5 +9,5 @@
 venv
 
 # Environment files
-.env
+my_journal/.env
 .env-mysql
