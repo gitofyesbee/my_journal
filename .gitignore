@@ -1,0 +1,13 @@
+# Pycharm configurations
+.idea
+
+# SQLite databases
+*.sqlite
+*.db
+
+# Virtual environment
+venv
+
+# Environment files
+.env
+.env-mysql
