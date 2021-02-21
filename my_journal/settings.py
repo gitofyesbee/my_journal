@@ -29,19 +29,24 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
+LOGIN_URL='login'
+LOGIN_REDIRECT_URL='blog:post_list'
+LOGOUT_URL='logout'
+
 ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pytz',
-    'blog.apps.BlogConfig',
+    'social_django',
+
 ]
 
 MIDDLEWARE = [
@@ -119,3 +124,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Oauth - single sigon
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_TWITTER_KEY = '' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = '' # Twitter API Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_KEY') # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_SECRET') # Google Consumer Secret
